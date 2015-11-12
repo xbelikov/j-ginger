@@ -13,10 +13,8 @@ import org.jsfml.window.event.Event;
 import java.io.IOException;
 import java.nio.file.Paths;
 //import java.util.HashMap;
-import java.util.concurrent.Semaphore;
 
 import ginger.common.Logger;
-import ginger.main.InputQueue;
 //import ginger.main.Entity;
 
 public class Scene extends Thread {
@@ -25,17 +23,11 @@ public class Scene extends Thread {
 	static final String LOG_MSG_RENDER_FRAME = "Rendering frame";
 	
 	Logger log;
-	//private HashMap<String, Entity> list;
-	//private InputQueue inputQueue;
-	//private Semaphore s;
 	
-	public Scene(Semaphore s, InputQueue inputQueue)
+	public Scene()
 	{
 		this.log = new Logger();
 		this.log.setOwner(this.getClass().getName());
-	
-		//this.s = s;
-		//this.inputQueue = inputQueue;
 	}
 	
 	@Override

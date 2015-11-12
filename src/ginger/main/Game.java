@@ -7,7 +7,7 @@ import ginger.configuration.Configuration;
 
 import ginger.common.Logger;
 import ginger.main.Scene;
-import ginger.main.Events;
+import ginger.system.Events;
 import ginger.main.InputQueue;
 
 import java.util.concurrent.Semaphore;
@@ -23,7 +23,6 @@ public class Game {
 	Scene scene;
 	Events events;
 	
-	InputQueue inputQueue;
 	Semaphore s;
 	
 	/**
@@ -39,10 +38,8 @@ public class Game {
 		
 		this.s = new Semaphore(1);
 		
-		this.inputQueue = new InputQueue();
-		
-		this.events = new Events(s, this.inputQueue);
-		this.scene = new Scene(s, this.inputQueue);
+		this.events = new Events();
+		this.scene = new Scene();
 	}
 	
 	/**
