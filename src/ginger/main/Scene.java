@@ -2,7 +2,7 @@ package ginger.main;
 
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
-import org.jsfml.graphics.Image;
+//import org.jsfml.graphics.Image;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Text;
 import org.jsfml.window.ContextSettings;
@@ -26,16 +26,16 @@ public class Scene extends Thread {
 	
 	Logger log;
 	//private HashMap<String, Entity> list;
-	private InputQueue inputQueue;
-	private Semaphore s;
+	//private InputQueue inputQueue;
+	//private Semaphore s;
 	
 	public Scene(Semaphore s, InputQueue inputQueue)
 	{
 		this.log = new Logger();
 		this.log.setOwner(this.getClass().getName());
 	
-		this.s = s;
-		this.inputQueue = inputQueue;
+		//this.s = s;
+		//this.inputQueue = inputQueue;
 	}
 	
 	@Override

@@ -32,8 +32,6 @@ public class Events extends Thread {
 	{
 		this.log.add(LOG_MSG_START);
 		
-		int num = 0;
-		
 		try {
 			this.log.add(LOG_MSG_LISTEN);
 			
@@ -54,10 +52,5 @@ public class Events extends Thread {
 		}
 		
 		this.log.add(LOG_MSG_STOP);
-	}
-	
-	private void checkInput()
-	{
-		
 	}
 }

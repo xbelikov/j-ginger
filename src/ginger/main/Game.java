@@ -1,11 +1,16 @@
 package ginger.main;
 
-import java.util.concurrent.Semaphore;
+
+import ginger.configuration.StAXConfigurationLoader;
+import ginger.configuration.ConfigurationLoader;
+import ginger.configuration.Configuration;
 
 import ginger.common.Logger;
 import ginger.main.Scene;
 import ginger.main.Events;
 import ginger.main.InputQueue;
+
+import java.util.concurrent.Semaphore;
 
 public class Game {
 	static final String LOG_MSG_START = "Start engine";
@@ -13,11 +18,8 @@ public class Game {
 	static final String LOG_MSG_ALL_STARTED = "All modules started";
 	
 	Logger log;
-	//Configuration c;
-	//EventsWorker e;
-	//TasksWorker t;
+	Configuration c;
 	
-	//TasksQueue tq;
 	Scene scene;
 	Events events;
 	
@@ -30,6 +32,10 @@ public class Game {
 	public Game() {
 		this.log = new Logger();
 		this.log.setOwner(this.getClass().getName());
+		
+		this.c = new Configuration(); 
+		ConfigurationLoader cl = new StAXConfigurationLoader();
+		cl.load(this.c);
 		
 		this.s = new Semaphore(1);
 		

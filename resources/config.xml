@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration version="0.1">
+	<app title="Ginger" />
+	<window width="800" height="600" type="windowed" />
+	<path>
+		<sceneobjects value="resources/data/sceneobjects/" />
+		<resources value="resources/data/resources/" />
+		<scenes value="resources/data/scenes/" />
+		<gui value="resources/data/gui/" />
+	</path>
+	<keymaps>
+		<keymap app-state="menu">
+			<key value="up" action="move-to-top-item" />
+			<key value="down" action="move-to-bottom-item" />
+			<key value="left" action="move-to-left-item" />
+			<key value="right" action="move-to-right-item" />
+			<key value="return" action="activate-item" />
+		</keymap>
+		<keymap app-state="game">
+			<key value="up" action="jump" />
+			<key value="down" action="sit" />
+			<key value="left" action="run-to-left" />
+			<key value="right" action="run-to-right" />
+			<key value="space" action="default-attack" />
+		</keymap>
+	</keymaps>
+</configuration>
