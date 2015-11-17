@@ -21,18 +21,18 @@ public class Configuration {
 	
 	Logger log;
 	
-	int windowWidth;
-	int windowHeight;
-	String windowType;
+	public int windowWidth;
+	public int windowHeight;
+	public String windowType;
 	
-	String windowTitle;
+	public String windowTitle;
 	
-	String pathToResources;
+	public String pathToResources;
 	
-	String pathToScenes;
-	String pathToSceneObjects;
+	public String pathToScenes;
+	public String pathToSceneObjects;
 	
-	String pathToGui;
+	public String pathToGui;
 	
 	/**
 	 * Map<String appStateName, Keymap>

@@ -2,15 +2,20 @@ package ginger.main;
 
 
 import ginger.configuration.StAXConfigurationLoader;
+import ginger.jsfml.JSFMLWindow;
 import ginger.configuration.ConfigurationLoader;
 import ginger.configuration.Configuration;
 
 import ginger.common.Logger;
 import ginger.main.Scene;
+import ginger.system.Window;
+import ginger.system.Renderer;
 import ginger.system.Events;
 import ginger.main.InputQueue;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Game {
 	static final String LOG_MSG_START = "Start engine";
@@ -21,9 +26,11 @@ public class Game {
 	Configuration c;
 	
 	Scene scene;
-	Events events;
+	Renderer renderer;
+	volatile Events events;
+	Window<org.jsfml.graphics.Drawable> window;
 	
-	Semaphore s;
+	//Window window;
 	
 	/**
 	 * Default constructor
@@ -36,10 +43,8 @@ public class Game {
 		ConfigurationLoader cl = new StAXConfigurationLoader();
 		cl.load(this.c);
 		
-		this.s = new Semaphore(1);
-		
-		this.events = new Events();
-		this.scene = new Scene();
+		//this.scene = new Scene();
+		//this.window = new Window();
 	}
 	
 	/**
@@ -50,8 +55,46 @@ public class Game {
 	{
 		log.add(LOG_MSG_START);
 		
-		this.events.start();
-		this.scene.start();
+		ExecutorService es = Executors.newCachedThreadPool();
+		
+		es.submit(new Runnable() {
+			public void run() {
+				log.add("start logic thread");
+				
+				while (true) {
+					log.add("some logic...");
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		
+		es.submit(new Runnable() {
+			public void run() {
+				log.add("start renderer thread");
+
+				/**
+				 * testing code
+				 */
+				window	= new JSFMLWindow();
+				window.setTitle(c.windowTitle);
+				window.setWidth(c.windowWidth);
+				window.setHeight(c.windowHeight);
+				
+				if (window.open()) {
+					renderer = new ginger.jsfml.JSFMLRenderer(window);
+				}
+				
+				while (window.isOpen()) {
+					renderer.update();
+					events = window.pollEvents();
+					events.clear();
+				}
+			}
+		});
 	}
 	
 	/**
