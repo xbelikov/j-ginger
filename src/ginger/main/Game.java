@@ -11,9 +11,7 @@ import ginger.main.Scene;
 import ginger.system.Window;
 import ginger.system.Renderer;
 import ginger.system.Events;
-import ginger.main.InputQueue;
 
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -79,7 +77,7 @@ public class Game {
 				/**
 				 * testing code
 				 */
-				window	= new JSFMLWindow();
+				window = new JSFMLWindow();
 				window.setTitle(c.windowTitle);
 				window.setWidth(c.windowWidth);
 				window.setHeight(c.windowHeight);
